@@ -1,4 +1,5 @@
 // Dependencies
+var PORT = process.env.PORT || 3000;
 var express = require("express");
 var mongojs = require("mongojs");
 // Require axios and cheerio. This makes the scraping possible
@@ -9,7 +10,7 @@ var cheerio = require("cheerio");
 var app = express();
 
 // Database configuration
-var databaseUrl = "scraper";
+var databaseUrl = process.env.MONGODB_URI || "scraper";
 var collections = ["scrapedData"];
 
 // Hook mongojs configuration to the db variable
@@ -89,7 +90,7 @@ app.get("/scrape", function(req, res) {
 
 
 // Listen on port 3000
-app.listen(3000, function() {
+app.listen(PORT, function() {
   console.log("App running on port 3000!");
 });
 
